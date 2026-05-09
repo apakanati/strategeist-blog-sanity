@@ -1,5 +1,13 @@
-import { postType } from './postType';
+import { author } from './author';
+import { category } from './category';
+import { post } from './post';
+import { tag } from './tag';
+import { youtube } from './youtube';
 
 export const schemaTypes = [
-    postType,
+    author,
+    category,
+    post,
+    tag,
+    youtube,
 ];
