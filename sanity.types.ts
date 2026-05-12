@@ -15,6 +15,11 @@
 export declare const internalGroqTypeReferenceTo: unique symbol
 
 // Source: schema.json
+export type Youtube = {
+  _type: 'youtube'
+  url?: string
+}
+
 export type Tag = {
   _id: string
   _type: 'tag'
@@ -54,6 +59,7 @@ export type Post = {
   _rev: string
   title?: string
   slug?: Slug
+  summary?: string
   content?: Array<
     | {
         children?: Array<{
@@ -82,7 +88,17 @@ export type Post = {
         _type: 'image'
         _key: string
       }
+    | ({
+        _key: string
+      } & Youtube)
   >
+  featured_image?: {
+    asset?: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
   is_featured?: boolean
   categories?: Array<
     {
@@ -94,6 +110,8 @@ export type Post = {
       _key: string
     } & TagReference
   >
+  sunrise?: string
+  sunset?: string
 }
 
 export type SanityImageCrop = {
@@ -166,7 +184,7 @@ export type Author = {
         _key: string
       }
   >
-  Image?: {
+  image?: {
     asset?: SanityImageAssetReference
     media?: unknown
     hotspot?: SanityImageHotspot
@@ -274,6 +292,7 @@ export type Geopoint = {
 }
 
 export type AllSanitySchemaTypes =
+  | Youtube
   | Tag
   | SanityImageAssetReference
   | CategoryReference
