@@ -92,5 +92,17 @@ export const post = defineType({
                 }
             ],
         }),
+
+        defineField({
+            name: 'sunrise',
+            type: 'datetime',
+            description: 'The date/time that this blog post should be considered published. If not provided, this blog post will be considered a "draft" and will only appear when previewing blog content.',
+        }),
+
+        defineField({
+            name: 'sunset',
+            type: 'datetime',
+            description: 'The date/time that this blog post should be considered published. If not provided, this blog post will be considered a "draft" and will only appear when previewing blog content.',
+        }),
     ],
 });
