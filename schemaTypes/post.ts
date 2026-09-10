@@ -44,6 +44,7 @@ export const post = defineType({
                         {
                             name: 'alt',
                             title: 'Alternative Text',
+                            description: 'Used for describing the image contents to screen readers. Useful for visitors that have low visibility and use assistive technology. Also highly recommended for search engine optimization (SEO).',
                             type: 'string',
                         },
                     ],
