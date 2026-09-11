@@ -7,7 +7,7 @@ export default defineConfig({
   name: 'default',
   title: 'Strategeist Blog',
 
-  projectId: 'owtamdkl',
+  projectId: 'owtamdkl', // cspell: ignore owtamdkl
   dataset: 'production',
 
   plugins: [structureTool(), visionTool()],
