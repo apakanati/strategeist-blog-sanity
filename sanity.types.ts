@@ -37,6 +37,73 @@ export type SanityImageAssetReference = {
   [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
 }
 
+export type RoadmapMilestone = {
+  _id: string
+  _type: 'roadmapMilestone'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  title?: string
+  cover?: {
+    asset: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  summary?: string
+  features?: Array<string>
+  content?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>
+          text?: string
+          _type: 'span'
+          _key: string
+        }>
+        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
+        listItem?: 'bullet' | 'number'
+        markDefs?: Array<{
+          href?: string
+          _type: 'link'
+          _key: string
+        }>
+        level?: number
+        _type: 'block'
+        _key: string
+      }
+    | {
+        asset?: SanityImageAssetReference
+        media?: unknown
+        hotspot?: SanityImageHotspot
+        crop?: SanityImageCrop
+        alt?: string
+        _type: 'image'
+        _key: string
+      }
+    | ({
+        _key: string
+      } & Youtube)
+  >
+  target?: string
+}
+
+export type SanityImageCrop = {
+  _type: 'sanity.imageCrop'
+  top?: number
+  bottom?: number
+  left?: number
+  right?: number
+}
+
+export type SanityImageHotspot = {
+  _type: 'sanity.imageHotspot'
+  x?: number
+  y?: number
+  height?: number
+  width?: number
+}
+
 export type PressKitSection = {
   _id: string
   _type: 'pressKitSection'
@@ -78,22 +145,6 @@ export type PressKitSection = {
   >
   layout?: 'column' | 'grid'
   sortOrder?: number
-}
-
-export type SanityImageCrop = {
-  _type: 'sanity.imageCrop'
-  top?: number
-  bottom?: number
-  left?: number
-  right?: number
-}
-
-export type SanityImageHotspot = {
-  _type: 'sanity.imageHotspot'
-  x?: number
-  y?: number
-  height?: number
-  width?: number
 }
 
 export type CategoryReference = {
@@ -392,9 +443,10 @@ export type AllSanitySchemaTypes =
   | Youtube
   | Tag
   | SanityImageAssetReference
-  | PressKitSection
+  | RoadmapMilestone
   | SanityImageCrop
   | SanityImageHotspot
+  | PressKitSection
   | CategoryReference
   | TagReference
   | Post

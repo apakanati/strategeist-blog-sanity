@@ -3,6 +3,7 @@ import { category } from './category';
 import { patchNote } from './patchNote';
 import { post } from './post';
 import { pressKitSection } from './pressKitSection';
+import { roadmapMilestone } from './roadmapMilestone';
 import { tag } from './tag';
 import { youtube } from './youtube';
 
@@ -12,6 +13,7 @@ export const schemaTypes = [
     patchNote,
     post,
     pressKitSection,
+    roadmapMilestone,
     tag,
     youtube,
 ];
