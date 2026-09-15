@@ -73,6 +73,17 @@ export const patchNote = defineType({
             validation: rule => rule.required().max(32),
         }),
 
+        defineField({
+            name: 'slug',
+            type: 'slug',
+            description: 'The URL-friendly version of the patch version number. Used for determining the direct URL for the patch note.',
+            options: {
+                source: (doc, context) => {
+                    return `${doc.majorVersionNumber}.${doc.minorVersionNumber}.${doc.patchVersionNumber}`;
+                },
+            },
+        }),
+
         // defineField({
         //     name: 'version',
         //     type: 'string',

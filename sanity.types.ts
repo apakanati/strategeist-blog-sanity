@@ -241,6 +241,7 @@ export type PatchNote = {
   patchVersionNumber?: string
   buildNumber?: string
   uniqueHash?: string
+  slug?: Slug
   cover?: {
     asset: SanityImageAssetReference
     media?: unknown
