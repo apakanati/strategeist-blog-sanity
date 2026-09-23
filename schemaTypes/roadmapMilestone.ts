@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { validateColor } from '../validators/color';
 
 export const roadmapMilestone = defineType({
     name: 'roadmapMilestone',
@@ -73,6 +74,13 @@ export const roadmapMilestone = defineType({
             type: 'string',
             description: 'The target release date or deadline for this milestone. This is an open-ended string so you can supply a full date or a vague target like "Q3, 2026".',
             validation: rule => rule.required().max(255),
+        }),
+
+        defineField({
+            name: 'color',
+            type: 'string',
+            description: 'Will appear as an accent highlight color on roadmap milestone tiles/cards. Opacity is handled by the site, so please use a fully opaque color.',
+            validation: rule => rule.required().custom(validateColor)
         }),
     ],
 });

@@ -86,6 +86,7 @@ export type RoadmapMilestone = {
       } & Youtube)
   >
   target?: string
+  color?: string
 }
 
 export type SanityImageCrop = {
