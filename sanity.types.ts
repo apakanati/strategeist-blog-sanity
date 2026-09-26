@@ -44,13 +44,9 @@ export type RoadmapMilestone = {
   _updatedAt: string
   _rev: string
   title?: string
-  cover?: {
-    asset: SanityImageAssetReference
-    media?: unknown
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    _type: 'image'
-  }
+  slug?: Slug
+  status?: 'planned' | 'in-development' | 'complete'
+  color?: string
   summary?: string
   features?: Array<string>
   content?: Array<
@@ -85,8 +81,15 @@ export type RoadmapMilestone = {
         _key: string
       } & Youtube)
   >
+  cover?: {
+    asset: SanityImageAssetReference
+    media?: unknown
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
   target?: string
-  color?: string
+  releaseDate?: string
 }
 
 export type SanityImageCrop = {
@@ -103,6 +106,12 @@ export type SanityImageHotspot = {
   y?: number
   height?: number
   width?: number
+}
+
+export type Slug = {
+  _type: 'slug'
+  current?: string
+  source?: string
 }
 
 export type PressKitSection = {
@@ -223,12 +232,6 @@ export type Post = {
   >
   sunrise?: string
   sunset?: string
-}
-
-export type Slug = {
-  _type: 'slug'
-  current?: string
-  source?: string
 }
 
 export type PatchNote = {
@@ -448,11 +451,11 @@ export type AllSanitySchemaTypes =
   | RoadmapMilestone
   | SanityImageCrop
   | SanityImageHotspot
+  | Slug
   | PressKitSection
   | CategoryReference
   | TagReference
   | Post
-  | Slug
   | PatchNote
   | Category
   | Author
