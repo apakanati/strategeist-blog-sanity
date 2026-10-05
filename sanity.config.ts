@@ -5,7 +5,7 @@ import {schemaTypes} from './schemaTypes'
 
 export default defineConfig({
   name: 'default',
-  title: 'Strategeist Blog',
+  title: 'Strategeist',
 
   projectId: 'owtamdkl', // cspell: ignore owtamdkl
   dataset: 'production',
