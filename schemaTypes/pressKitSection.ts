@@ -58,6 +58,31 @@ export const pressKitSection = defineType({
         }),
 
         defineField({
+            name: 'spacing',
+            type: 'string',
+            description: 'Controls the spacing between content elements. Spacing is measured in "rems" which are relative to the font size. Base font size is 16 pixels; 1 rem = 16 pixels, 2 rems = 32 pixels, etc.',
+            initialValue: 'relaxed',
+            options: {
+                list: [
+                    {
+                        title: 'Relaxed (1 rem)',
+                        value: 'relaxed',
+                    },
+
+                    {
+                        title: 'Tight (0.5 rem)',
+                        value: 'tight',
+                    },
+
+                    {
+                        title: 'Loose (2 rem)',
+                        value: 'loose',
+                    },
+                ],
+            },
+        }),
+
+        defineField({
             name: 'sortOrder',
             type: 'number',
             initialValue: 50,

@@ -1,5 +1,18 @@
-import { defineField, defineType } from 'sanity';
+import { defineField, defineType, ValidationContext } from 'sanity';
 import { validateColor } from '../validators/color';
+
+const validateActivityWindow = (value: any, context: ValidationContext, failMessage: string): string|true => {
+    if (context.document?.activityWindowStart && context.document?.activityWindowEnd) {
+        const start = new Date(context.document.activityWindowStart as string).getTime();
+        const end = new Date(context.document.activityWindowEnd as string).getTime();
+
+        if (start > end) {
+            return failMessage;
+        }
+    }
+
+    return true;
+};
 
 export const roadmapMilestone = defineType({
     name: 'roadmapMilestone',
@@ -145,6 +158,22 @@ export const roadmapMilestone = defineType({
             group: 'dates',
             description: 'The target release date. This will not be shown on the site, but will be used for sorting/ordering of milestones. Items with later release dates will be shown later in the list.',
             validation: rule => rule.required(),
+        }),
+
+        defineField({
+            name: 'activityWindowStart',
+            type: 'date',
+            group: 'dates',
+            description: 'The date on which this milestone will start appearing on the roadmap milestones index page. Uses UTC time zone for determining start/end of date.',
+            validation: rule => rule.custom((value, context) => validateActivityWindow(value, context, 'Must be earlier than the "activity window end" field.')),
+        }),
+        
+        defineField({
+            name: 'activityWindowEnd',
+            type: 'date',
+            group: 'dates',
+            description: 'The date on which this milestone will stop appearing on the roadmap milestones index page. Uses UTC time zone for determining start/end of date.',
+            validation: rule => rule.custom((value, context) => validateActivityWindow(value, context, 'Must be later than the "activity window start" field.')),
         }),
     ],
 });

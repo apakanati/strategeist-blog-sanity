@@ -90,6 +90,8 @@ export type RoadmapMilestone = {
   }
   target?: string
   releaseDate?: string
+  activityWindowStart?: string
+  activityWindowEnd?: string
 }
 
 export type SanityImageCrop = {
@@ -154,6 +156,7 @@ export type PressKitSection = {
       } & Youtube)
   >
   layout?: 'column' | 'grid'
+  spacing?: 'relaxed' | 'tight' | 'loose'
   sortOrder?: number
 }
 
@@ -300,53 +303,6 @@ export type Category = {
   description?: string
 }
 
-export type Author = {
-  _id: string
-  _type: 'author'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: string
-  job_title?: string
-  bio?: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>
-          text?: string
-          _type: 'span'
-          _key: string
-        }>
-        style?: 'normal' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'blockquote'
-        listItem?: 'bullet' | 'number'
-        markDefs?: Array<{
-          href?: string
-          _type: 'link'
-          _key: string
-        }>
-        level?: number
-        _type: 'block'
-        _key: string
-      }
-    | {
-        asset?: SanityImageAssetReference
-        media?: unknown
-        hotspot?: SanityImageHotspot
-        crop?: SanityImageCrop
-        alt?: string
-        _type: 'image'
-        _key: string
-      }
-  >
-  image?: {
-    asset?: SanityImageAssetReference
-    media?: unknown
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    alt?: string
-    _type: 'image'
-  }
-}
-
 export type SanityImagePaletteSwatch = {
   _type: 'sanity.imagePaletteSwatch'
   background?: string
@@ -458,7 +414,6 @@ export type AllSanitySchemaTypes =
   | Post
   | PatchNote
   | Category
-  | Author
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
